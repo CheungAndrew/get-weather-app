@@ -1,0 +1,41 @@
+@media (max-width: 768px) {
+    html{font-size: 85%;}
+}
+
+body {
+    font-family: "Playfair Display", serif;
+}
+
+.sectionDark {
+    background-color: #BDEDFF;
+    padding-bottom: 7rem;
+    padding-top: 7rem;
+}
+
+.sectionLight {
+    background-color: #DBFFFF;
+    padding-bottom: 7rem;
+    padding-top: 7rem;
+}
+
+.sectionSearch {
+    background-color: #089de3;
+    padding-bottom: 1rem;
+    color: white;
+    text-shadow: 2px 2px black;
+}
+
+.sectionHead {
+    background-color: #089de3;
+    padding-top: 1rem;
+    color: white;
+    text-shadow: 3px 3px black;
+}
+
+.footer {
+    background-color: #191919;
+    color: white;
+    padding-top: 5rem;
+    padding-bottom: 5rem;
+    text-decoration: none;
+}
