@@ -1,7 +1,7 @@
 $(document).ready(function () {
 
     // Variables to create API URL
-    var api = "http://api.openweathermap.org/data/2.5/";
+    var api = "https://api.openweathermap.org/data/2.5/";
     var weather = "weather?";
     var forecast = "forecast?";
     var apiKey = "&appid=782baf5721afe320477b796dedba34f7";
