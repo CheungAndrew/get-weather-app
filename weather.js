@@ -48,7 +48,7 @@ $(document).ready(function () {
 
         // Show Temperature
         $.getJSON(url, function (weatherData) {
-            $(".temp").html(zip + "<br>" + weatherData.main.temp + "&deg;C");
+            $(".temp").html(zip + "<br><img src='http://openweathermap.org/img/w/" + weatherData.weather[0].icon + ".png' width='90rem;'><br>" + weatherData.main.temp + "&deg;C");
             tempStyle();
         });
 
