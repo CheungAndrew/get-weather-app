@@ -1,11 +1,11 @@
 $(document).ready(function () {
 
     // Variables to create API URL
-    var api = "https://api.openweathermap.org/data/2.5/";
-    var weather = "weather?";
-    var forecast = "forecast?";
-    var apiKey = "&appid=782baf5721afe320477b796dedba34f7";
-    var units = "&units=metric";
+    const api = "https://api.openweathermap.org/data/2.5/";
+    const weather = "weather?";
+    const forecast = "forecast?";
+    const apiKey = "&appid=782baf5721afe320477b796dedba34f7";
+    const units = "&units=metric";
 
     // Submit button for City
     $("button#submitCity").click(function () {
@@ -17,7 +17,7 @@ $(document).ready(function () {
 
         // Show Temperature
         $.getJSON(urlWeather, function (weatherData) {
-            $(".temp").html(weatherData.name + "<br><img src='http://openweathermap.org/img/w/" + weatherData.weather[0].icon + ".png' width='90rem;'><br>" +  weatherData.main.temp + "&deg;C");
+            $(".temp").html(weatherData.name + `<br><img class='img-fluid' src='http://openweathermap.org/img/w/${weatherData.weather[0].icon}.png' width='90rem;'><br>${weatherData.main.temp}&deg;C`);
             tempStyle();
         });
 
@@ -26,16 +26,11 @@ $(document).ready(function () {
 
         // Show Forecast
         $.getJSON(urlForecast, function (forecastData) {
-            $(".forecast1").html(forecastData.list[0].dt_txt + "<br><img src='http://openweathermap.org/img/w/" + forecastData.list[0].weather[0].icon + ".png' width='70rem;'><br>" + forecastData.list[0].main.temp + "&deg;C");
-            $(".forecast2").html(forecastData.list[8].dt_txt + "<br><img src='http://openweathermap.org/img/w/" + forecastData.list[8].weather[0].icon + ".png' width='70rem;'><br>" + forecastData.list[8].main.temp + "&deg;C");
-            $(".forecast3").html(forecastData.list[16].dt_txt + "<br><img src='http://openweathermap.org/img/w/" + forecastData.list[16].weather[0].icon + ".png' width='70rem;'><br>" + forecastData.list[16].main.temp + "&deg;C");
-            $(".forecast4").html(forecastData.list[24].dt_txt + "<br><img src='http://openweathermap.org/img/w/" + forecastData.list[24].weather[0].icon + ".png' width='70rem;'><br>" + forecastData.list[24].main.temp + "&deg;C");
-            $(".forecast5").html(forecastData.list[32].dt_txt + "<br><img src='http://openweathermap.org/img/w/" + forecastData.list[32].weather[0].icon + ".png' width='70rem;'><br>" + forecastData.list[32].main.temp + "&deg;C");
+            for(var i = 0; i < 12; i++) {
+                $(`.forecast${i}`).html(forecastData.list[i].dt_txt + `<br><img class='img-fluid' src='http://openweathermap.org/img/w/${forecastData.list[i].weather[0].icon}.png' width='70rem;'><br>${forecastData.list[i].main.temp}&deg;C`);
+            }
             forecastTempStyle();
         });
-
-
-
     });
 
     // Submit button for ZIP Code
@@ -48,7 +43,7 @@ $(document).ready(function () {
 
         // Show Temperature
         $.getJSON(url, function (weatherData) {
-            $(".temp").html(zip + "<br><img src='http://openweathermap.org/img/w/" + weatherData.weather[0].icon + ".png' width='90rem;'><br>" + weatherData.main.temp + "&deg;C");
+            $(".temp").html(zip + `<br><img class='img-fluid' src='http://openweathermap.org/img/w/${weatherData.weather[0].icon}.png' width='90rem;'><br>${weatherData.main.temp}&deg;C`);
             tempStyle();
         });
 
@@ -57,11 +52,9 @@ $(document).ready(function () {
 
         // Show Forecast
         $.getJSON(urlForecast, function (forecastData) {
-            $(".forecast1").html(forecastData.list[0].dt_txt + "<br><img src='http://openweathermap.org/img/w/" + forecastData.list[0].weather[0].icon + ".png' width='70rem;'><br>" + forecastData.list[0].main.temp + "&deg;C");
-            $(".forecast2").html(forecastData.list[8].dt_txt + "<br><img src='http://openweathermap.org/img/w/" + forecastData.list[8].weather[0].icon + ".png' width='70rem;'><br>" + forecastData.list[8].main.temp + "&deg;C");
-            $(".forecast3").html(forecastData.list[16].dt_txt + "<br><img src='http://openweathermap.org/img/w/" + forecastData.list[16].weather[0].icon + ".png' width='70rem;'><br>" + forecastData.list[16].main.temp + "&deg;C");
-            $(".forecast4").html(forecastData.list[24].dt_txt + "<br><img src='http://openweathermap.org/img/w/" + forecastData.list[24].weather[0].icon + ".png' width='70rem;'><br>" + forecastData.list[24].main.temp + "&deg;C");
-            $(".forecast5").html(forecastData.list[32].dt_txt + "<br><img src='http://openweathermap.org/img/w/" + forecastData.list[32].weather[0].icon + ".png' width='70rem;'><br>" + forecastData.list[32].main.temp + "&deg;C");
+            for(var i = 0; i < 12; i++) {
+                $(`.forecast${i}`).html(forecastData.list[i].dt_txt + `<br><img class='img-fluid' src='http://openweathermap.org/img/w/${forecastData.list[i].weather[0].icon}.png' width='70rem;'><br>${forecastData.list[i].main.temp}&deg;C`);
+            }
             forecastTempStyle();
         });
     });
@@ -72,5 +65,7 @@ var tempStyle = function () {
 };
 
 var forecastTempStyle = function() {
-    $(".forecast1, .forecast2, .forecast3, .forecast4, .forecast5").css("font-size", "1.3rem");
+    for(var i = 0; i < 12; i++) {
+        $(`.forecast${i}`).css("font-size", "1.3rem");
+    }
 }
