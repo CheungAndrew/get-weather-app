@@ -77,6 +77,38 @@ $(document).ready(function () {
         $.getJSON(url, function (weatherData) {
             $(".temp").html(zip + `<br><img class='img-fluid' src='http://openweathermap.org/img/w/${weatherData.weather[0].icon}.png' width='90rem;'><br>${weatherData.main.temp}&deg;C`);
             tempStyle();
+            $(".weatherModal").html(
+                `<button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal">More Details</button>
+                                        <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                                            <div class="modal-dialog" role="document">
+                                                <div class="modal-content">
+                                                    <div class="modal-header">
+                                                        <h5 class="modal-title" id="exampleModalLabel">Current Weather</h5>
+                                                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                                            <span aria-hidden="true">&times;</span>
+                                                        </button>
+                                                    </div>
+                                                    <div class="modal-body">
+                                                        ${weatherData.weather[0].description.toUpperCase()}
+                                                        <br>
+                                                        Min: ${weatherData.main.temp_min}&deg;C
+                                                        <br>
+                                                        Max: ${weatherData.main.temp_max}&deg;C
+                                                        <br>
+                                                        Humidity: ${weatherData.main.humidity}%
+                                                        <br>
+                                                        Wind Speed: ${weatherData.wind.speed} meters/sec
+                                                        <br>
+                                                        Cloudiness: ${weatherData.clouds.all}%
+
+                                                    </div>
+                                                    <div class="modal-footer">
+                                                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>`
+            );
         });
 
         // Creating API URL for forecast
